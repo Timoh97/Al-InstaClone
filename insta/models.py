@@ -10,4 +10,11 @@ class Image(models.Model):
     profile = models.ForeignKey(Location, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.
+        return self.name
+    
+class Profile(models.Model):
+    bio = models.CharField(max_length =300)
+    photo = models.CharField(max_length =300)
+    
+    def __str__(self):
+        return self.name
