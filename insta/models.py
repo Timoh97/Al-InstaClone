@@ -16,5 +16,10 @@ class Image(models.Model):
         return self.image.namespace
     
 class Profile(models.Model):
+    bio = models.TextField(max_length=300, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_photo = CloudinaryField('image')
+    contact = models.CharField(max_length=30, blank=True, null=True)
+    
         def __str__(self):
-        return self.
+        return self.user.username
