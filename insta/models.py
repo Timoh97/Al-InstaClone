@@ -23,3 +23,13 @@ class Profile(models.Model):
     
         def __str__(self):
         return self.user.username
+class Comments(models.Model):
+    
+    def __str__(self):
+        return self.
+    
+class Likes(models.Model):
+    
+    
+    def __str__(self):
+        return self.
