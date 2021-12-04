@@ -13,4 +13,8 @@ class Image(models.Model):
     comment_count = models.IntegerField(default=0)
 
     def __str__(self):
+        return self.image.namespace
+    
+class Profile(models.Model):
+        def __str__(self):
         return self.
