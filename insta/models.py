@@ -29,8 +29,13 @@ class Comments(models.Model):
      comment_date = models.DateTimeField(auto_now_add=True)
      comment = models.CharField(max_length=150)
      
+     
+      def save_the_comment(self):
+        self.save()
+        
+        
     def __str__(self):
-        return self.
+        return self.comment
     
 class Likes(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE)
