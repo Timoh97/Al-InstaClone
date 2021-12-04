@@ -22,7 +22,12 @@ class Profile(models.Model):
     contact = models.CharField(max_length=30, blank=True, null=True)
     
         def save_the_profile(self):
+            
         self.save()
+        
+        def delete_the_profile(self):
+            
+        self.delete()
         
         def __str__(self):
         return self.user.username
