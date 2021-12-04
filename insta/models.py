@@ -29,6 +29,10 @@ class Profile(models.Model):
             
         self.delete()
         
+        def update_the_profile(self):
+                
+        self.save()
+        
         def __str__(self):
         return self.user.username
 class Comments(models.Model):
