@@ -24,7 +24,11 @@ class Profile(models.Model):
         def __str__(self):
         return self.user.username
 class Comments(models.Model):
-    
+     image = models.ForeignKey(Image, on_delete=models.CASCADE)
+     user = models.ForeignKey(User, on_delete=models.CASCADE)
+     comment_date = models.DateTimeField(auto_now_add=True)
+     comment = models.CharField(max_length=150)
+     
     def __str__(self):
         return self.
     
