@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 # Create your models here.
 class Image(models.Model):
@@ -21,37 +22,43 @@ class Profile(models.Model):
     profile_photo = CloudinaryField('image')
     contact = models.CharField(max_length=30, blank=True, null=True)
     
-        def save_the_profile(self):
+    def save_the_profile(self):
             
         self.save()
         
-        def delete_the_profile(self):
+    def delete_the_profile(self):
             
         self.delete()
         
-        def update_the_profile(self):
+    def update_the_profile(self):
                 
         self.save()
         
-        def __str__(self):
+    @classmethod
+    def get_profile_by_user(cls, user):
+        profile = cls.objects.filter(user=user)
+        return profile
+        
+    def __str__(self):
         return self.user.username
+    
 class Comments(models.Model):
-     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-     user = models.ForeignKey(User, on_delete=models.CASCADE)
-     comment_date = models.DateTimeField(auto_now_add=True)
-     comment = models.CharField(max_length=150)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_date = models.DateTimeField(auto_now_add=True)
+    comment = models.CharField(max_length=150)
      
      
-      def save_the_comment(self):
-        self.save()
+    def save_the_comment(self):
+       self.save()
         
         
     def __str__(self):
-        return self.comment
+       return self.comment
     
 class Likes(models.Model):
-     user = models.ForeignKey(User, on_delete=models.CASCADE)
-     image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.
