@@ -1,11 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
 class Image(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='images')
-    image = CloudinaryField('image')
+    image = models.ImageField(upload_to = 'images/')
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField()
     image_date = models.DateTimeField(auto_now_add=True)
@@ -19,7 +20,7 @@ class Image(models.Model):
 class Profile(models.Model):
     bio = models.TextField(max_length=300, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = CloudinaryField('image')
+    profile_photo = models.ImageField(upload_to = 'images/')
     contact = models.CharField(max_length=30, blank=True, null=True)
     
     def save_the_profile(self):
@@ -50,10 +51,12 @@ class Comments(models.Model):
      
      
     def save_the_comment(self):
+        
        self.save()
         
         
     def __str__(self):
+        
        return self.comment
     
 class Likes(models.Model):
@@ -61,4 +64,4 @@ class Likes(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.
+        return self.like
