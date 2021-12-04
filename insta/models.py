@@ -21,6 +21,9 @@ class Profile(models.Model):
     profile_photo = CloudinaryField('image')
     contact = models.CharField(max_length=30, blank=True, null=True)
     
+        def save_the_profile(self):
+        self.save()
+        
         def __str__(self):
         return self.user.username
 class Comments(models.Model):
