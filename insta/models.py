@@ -1,12 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+#import date as dt
 import datetime as dt
+from cloudinary.models import CloudinaryField
+from django.db.models.fields import related
 
 # Create your models here.
 class Image(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to = 'images/')
+    image = CloudinaryField('image')
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField()
     image_date = models.DateTimeField(auto_now_add=True)
@@ -20,7 +23,7 @@ class Image(models.Model):
 class Profile(models.Model):
     bio = models.TextField(max_length=300, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField(upload_to = 'images/')
+    profile_photo = CloudinaryField('image')
     contact = models.CharField(max_length=30, blank=True, null=True)
     
     def save_the_profile(self):

@@ -18,4 +18,6 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, 'profile.html', {"images": images, "profile": profile})
     # return render(request, 'profile.html')
-    
+
+  
+
