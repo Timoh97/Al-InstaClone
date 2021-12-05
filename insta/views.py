@@ -16,10 +16,10 @@ def profile(request):
     images = Image.objects.filter(user_id=current_user.id)
     # get the profile of the current logged in user
     profile = Profile.objects.filter(user_id=current_user.id).first()
-    return render(request, 'profile.html', {"images": images, "profile": profile})
+    return render(request, 'create_profile.html', {"images": images, "profile": profile})
     # return render(request, 'profile.html')
     
-ef like_image(request, id):
+def like_image(request, id):
    likes = Likes.objects.filter(image_id=id).first()
    # check if the user has already liked the image
    if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
@@ -43,6 +43,14 @@ ef like_image(request, id):
        image.like_count = image.like_count + 1
        image.save()
        return redirect('/')
+
+def search_images(request):
+  if 'search' in request.GET and request.GET['search']:
+      search_term = request.GET.get('search').lower()
+      images = Image.search_by_image_name(search_term)
+      message = f'{search_term}'
+      title = message
+      return render(request, 'searching.html', {'success': message, 'images': images})
 
   
 
