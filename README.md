@@ -4,7 +4,7 @@ Instagram Clone
 
 ## REQUIRED FEATURES
 
-Instagram is a simple photo web application to showcase beautiful pictures and designs. Users get to view photos updated by other users. They can also click on a photo and view more details about it. Users can also leave comments based on selected images.
+Instagram is a simple photo web application to showcase beautiful pictures and designs. Users can create profiles,upload their pictures and get to comment and like other pictures.
 
 ## DESIGN
 Our design practice offers a full range of services including brand strategy, interaction and visual design and user experience testing.
