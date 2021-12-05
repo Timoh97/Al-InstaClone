@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.http  import HttpResponse
+#setting cloudinary
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Create your views here.
 
@@ -53,4 +57,24 @@ def search_images(request):
       return render(request, 'searching.html', {'success': message, 'images': images})
 
   
-
+def save_image(request):
+  if request.method == 'POST':
+      image_name = request.POST['image_name']
+      image_caption = request.POST['image_caption']
+      image_file = request.FILES['image_file']
+      image_file = cloudinary.uploader.upload(image_file)
+      image_url = image_file['url']
+      image_public_id = image_file['public_id']
+      image = Image(image_name=image_name, image_caption=image_caption, image=image_url,
+                    profile_id=request.POST['user_id'], user_id=request.POST['user_id'])
+      image.save_image()
+      return redirect('/create_profile', {'success': 'uploading image successfully done'})
+      # return render(request, 'profile.html', {'success': 'Image Uploaded Successfully'})
+  else:
+      return render(request, 'profile.html', {'danger': 'uploading image failed, try again'})
+ 
+ 
+  else:
+      message = 'Search something'
+     
+      return render(request, 'searching.html', {'danger': message})
