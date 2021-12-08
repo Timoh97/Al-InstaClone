@@ -1,0 +1,45 @@
+{% extends 'common/base.html' %}
+{% load bootstrap3 %}
+
+{%block content%}
+{{block.super}}
+
+<div class="container">
+  <div class="row">
+    <div class="text-center card col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="card-header">
+        {{details.image_name}}
+      </div>
+    
+      <div class="card-body">
+        <img class="img-fluid" src="{{details.image.url}}" alt="Image">
+      </div>
+      
+      <div class="mx-auto">
+        <!-- Comment form goes here -->
+        <form action="{%url 'image_details' photo_id=details.id %}" enctype="multipart/form-data" method="POST">
+          {%csrf_token%}
+          {% bootstrap_form form %}
+      
+          <input type="submit" class="btn btn-sm btn-success" value="Post Comment">
+        </form>
+      </div>
+  
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="border: .1em solid rgb(223, 91, 91); padding: 1em;">
+      <!-- Display comments here -->
+      <h2 class="text-center" style="text-decoration: underline;">Comments</h2>
+      {%for comment in comments%}
+
+      <div class="card mb-2" style="border: .1em solid rgb(223, 91, 91);">
+        <p><strong>By <em>{{comment.user.username}}</em>:</strong> {{comment.comment_message}}</p>
+        <p><em>{{comment.posted_on}}</em></p>
+      </div>
+  
+      {%endfor%}
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}

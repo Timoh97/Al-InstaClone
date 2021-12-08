@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+
+{%block content%}
+{{block.super}}
+
+<div class="container" style="border: .1em solid rgb(223, 91, 91);">
+  {% for image in images %}
+  <div class="display text-center">
+    {{image.image_name}} <br>
+    <img src="{{image.image.url}}" class="img-fluid " alt="image">
+  </div>
+  {% endfor %}
+</div>
+
+{%endblock%}

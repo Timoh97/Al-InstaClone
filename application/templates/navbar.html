@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-default" style="padding: 1em;">
+    <div class="container-fluid">
+      <img src="https://cdn-icons.flaticon.com/png/128/2099/premium/2099085.png?token=exp=1638947716~hmac=51583afba68e24227dfbda408ad0fd93" width="40" alt="">
+      <img src="https://brandpalettes.com/wp-content/uploads/2018/10/Instagram.png?ezimgfmt=rs%3Adevice%2Frscb1-1" width="40" alt="">
+      <div class="col-sm-2 col-md-2 navbar-header">
+        
+        <button class="btn btn-default"><a class="navbar-brand" href="{% url 'home' %}"> InstaHome </a></button>
+      </div>
+
+      <div class="col-sm-3 col-md-3 navbar-right">
+        
+        <form class="navbar-form" role="search" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="search" name="category">
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-sm-3 col-md-3">
+        <button class="btn btn-default"><a href="{%url 'post_image'%}" class="col-sm-3 col-md-3 col-lg-3">post+</a></button>
+      </div>
+
+      <div class="col-sm-2 col-md-2">
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{% url 'home' %}">Home</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="{%url 'profile'%}">My Profile</a>
+              </li>
+              <li>
+                <a href="/accounts/login">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      {%else%}
+        <li>
+          <a href="/accounts/login" class="btn btn-default">Login</a>
+        </li>
+      {%endif%}
+      </div>
+
+    </div>
+  </nav>
+</body>
+</html>
+
